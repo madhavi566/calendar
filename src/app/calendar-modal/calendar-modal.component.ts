@@ -32,7 +32,7 @@ export class CalendarModalComponent {
       let To = this.form.value.toTime;
       if(from?.split(':')[0] < To?.split(':')[0]) {
         // save user schedule
-        let person = prompt("Please enter your name");
+        let person = prompt("Please enter your name",'sample');
         if (person != null) {
           this.indvDetails.guestName = person;
         }
