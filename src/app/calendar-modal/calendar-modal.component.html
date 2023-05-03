@@ -1,0 +1,52 @@
+<div class="myCalendar">
+<form [formGroup]="form">  
+    <div class="row">
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <input
+            class="form-control"
+            #datepickerMDY="bsDatepicker"
+            bsDatepicker
+            formControlName="dateMDY"
+            [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }">
+        </div>
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <button class="btn btn-success" (click)="datepickerMDY.toggle();selectedDate()" [attr.aria-expanded]="datepickerMDY.isOpen" type="button">Date Picker</button>
+        </div>
+    </div>
+
+    <div class="fl2">
+        <div class="col-xs-12 col-12 col-md-4 form-group"> <span>From time</span>
+          <input type="time" name="fromTime" formControlName ="fromTime">
+        </div>
+        <div class="col-xs-12 col-12 col-md-4 form-group"> <span>To time</span>
+            <input type="time" name="toTime" formControlName ="toTime">
+          </div>
+    </div>
+<button type="submit" style="margin-bottom: 20%;" (click)="onSubmit()">Save </button>
+
+</form>
+   
+<div *ngIf="showData; else instructUser">
+        <table  style="color:blue;">
+         <tr>
+         <th>Guest Name : </th>   
+         <th>From Date : </th>   
+         <th>To Date : </th>   
+         <th>Selected Date : </th>   
+        </tr>
+        <ng-container *ngFor="let detail of allUserDetails">
+        <tr>
+        <td>  {{detail.guestName}} </td>  
+        <td>  {{detail.guestFromDate}} </td>
+        <td>  {{detail.guestToDate}} </td>
+        <td>  {{detail.guestSelectedDate}} </td>        
+        </tr>
+       </ng-container>
+        </table>
+</div>
+<ng-template #instructUser>
+    Please enter valid input and save, your saved data appears here.
+  </ng-template>
+
+</div>
+
